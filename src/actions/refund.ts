@@ -43,7 +43,7 @@ export async function markOrderRefunded(orderId: string) {
         throw new Error("Unauthorized")
     }
 
-    await db.transaction(async (tx) => {
+    await db.transaction(async (tx: any) => {
         const order = await tx.query.orders.findFirst({ where: eq(orders.orderId, orderId) })
         if (!order) throw new Error("Order not found")
 

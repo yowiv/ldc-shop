@@ -530,7 +530,7 @@ export async function cancelExpiredOrders(filters: { productId?: string; userId?
     const orderId = filters.orderId ?? null;
 
     try {
-        return await db.transaction(async (tx) => {
+        return await db.transaction(async (tx: any) => {
             const expired = await tx.execute(sql`
                 UPDATE orders
                 SET status = 'cancelled'

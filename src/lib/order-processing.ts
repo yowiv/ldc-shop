@@ -20,7 +20,7 @@ export async function processOrderFulfillment(orderId: string, paidAmount: numbe
     }
 
     if (order.status === 'pending' || order.status === 'cancelled') {
-        await db.transaction(async (tx) => {
+        await db.transaction(async (tx: any) => {
             // Atomic update to claim card (Postgres only)
             let cardKey: string | undefined;
             let supportsReservation = true;
